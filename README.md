@@ -11,71 +11,24 @@
 
 ## Getting started
 ### Mostly automatic install
-1. `npm install rnpm --global`
-2. `npm install react-native-smartconfig@latest --save`
-3. `rnpm link react-native-smartconfig`
+1. `npm install react-native-smartconfig-dm@latest --save`
 
-### Manual install
-#### iOS
-- `npm install react-native-smartconfig@latest --save`
--  In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-- Go to `node_modules` ➜ `react-native-smartconfig` and add `RCTSmartconfig.xcodeproj`
-- In XCode, in the project navigator, select your project. Add `libRCTSmartconfig.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
-- Click `RCTSmartconfig.xcodeproj` in the project navigator and go the `Build Settings` tab. Make sure 'All' is toggled on (instead of 'Basic'). In the `Search Paths` section, look for `Header Search Paths` and make sure it contains both `$(SRCROOT)/../../react-native/React` - mark  as `recursive`.
-- Run your project (`Cmd+R`)
-
-
-#### Android
-
--  `npm install react-native-smartconfig@latest --save`
--  For older version.  Modify the ReactInstanceManager.builder() calls chain in `android/app/main/java/.../MainActivity.java` to include:
-
-```javascript
-import com.tuanpm.RCTSmartconfig; // import for older version
-
-.addPackage(new RCTSmartconfigPackage()) //for older version
-```
--  For newest version.  Modify the ReactInstanceManager.builder() calls chain in `android/app/main/java/.../MainApplication.java` to include:
-```javascript
-import com.tuanpm.RCTSmartconfig.RCTSmartconfigPackage; // import for newest version of react-native
-
-new RCTSmartconfigPackage()           // for newest version of react-native
-```
-
--  Append the following lines to `android/settings.gradle` before `include ':app'`:
-
-```
-include ':react-native-smartconfig'
-project(':react-native-smartconfig').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-smartconfig/android')
-```
-
-- Insert the following lines inside the dependencies block in `android/app/build.gradle`, dont missing `apply plugin:'java'` on top:
-
-```
-compile project(':react-native-smartconfig')
-```
-
-Notes:
-
-```
-dependencies {
-  compile project(':react-native-smartconfig')
-}
-```
-
+####For iOS: 
+1. cd ios
+2. pod install
 
 
 ## Usage
 
 ```javascript
-import Smartconfig from 'react-native-smartconfig';
+import Smartconfig from 'react-native-smartconfig-dm';
 
 Smartconfig.start({
   type: 'esptouch', //or airkiss, now doesn't not effect
   ssid: 'wifi-network-ssid',
   bssid: 'filter-device', //"" if not need to filter (don't use null)
   password: 'wifi-password',
-  timeout: 50000 //now doesn't not effect
+  timeout: 10000 //now doesn't not effect
 }).then(function(results){
   //Array of device success do smartconfig
   console.log(results);
